@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "BQspC+PYz2E=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\My\\Documents\\GitHub\\BasicShop\\Backend\\Backend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\My\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
+    "C:\\Users\\My\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
