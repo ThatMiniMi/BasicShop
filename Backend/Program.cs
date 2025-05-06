@@ -15,4 +15,6 @@ builder.Services.AddCors(Options =>
 
 var app = builder.Build();
 
+app.UseCors("AllowAll");
+
 app.Run();
