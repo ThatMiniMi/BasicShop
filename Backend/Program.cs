@@ -13,7 +13,8 @@ builder.Services.AddCors(Options =>
         .AllowAnyMethod();
     });
 });
-builder.Services.AddDbContext<AppDbContext>(Options =>Options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<AppDbContext>
+(Options =>Options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
