@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 
+namespace Backend.Models;
 public class Order
 {
     public int Id { get; set; }
