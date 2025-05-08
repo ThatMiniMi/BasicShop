@@ -1,19 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import ProductList from './Components/ProductList'
-import AdminPanel from './Components/AdminPanel'
+import './App.css';
+import AdminPanel from './Components/AdminPanel';
 
-function App()
-{
+function App() {
   return (
-    <main>
-      <h1 className='text-2x1 font-bold p-4'>Product Shop</h1>
-      <AdminPanel />
-      {/* <ProductList /> */}
+    <main className="min-h-screen bg-gray-50 text-gray-900">
+      <header className="bg-blue-600 text-white p-4 text-center">
+        <h1 className="text-2xl font-bold">Product Shop Admin</h1>
+      </header>
+      
+      <section className="p-4">
+        <AdminPanel />
+      </section>
     </main>
   );
 }
 
-export default App
+export default App;
