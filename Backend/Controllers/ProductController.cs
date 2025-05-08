@@ -16,7 +16,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Product>>> GetAllProduct(int id)
+    public async Task<ActionResult<IEnumerable<Product>>> GetAllProducts(int id)
     {
         return await _context.Products.Include(p => p.Category).ToListAsync();
     }

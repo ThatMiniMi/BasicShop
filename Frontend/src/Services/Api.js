@@ -1,15 +1,15 @@
-const API_BASE = "https://localhost:5156/api"
+const API_BASE = "http://localhost:5156/api"
 
 export async function fetchCategories()
 {
-    const res = await fetch(`https://localhost:5156/api/category`);
+    const res = await fetch(`http://localhost:5156/api/category`);
     if (!res.ok) throw new Error("Failed to load categories");
         return res.json();
 }
 
 export async function createCategory(category)
 {
-    const res = await fetch(`https://localhost:5156/api/category`,
+    const res = await fetch(`http://localhost:5156/api/category`,
         {
             method: "POST",
             headers: { "Content-Type" : "application/json", },
@@ -21,7 +21,7 @@ export async function createCategory(category)
 
 export async function updateCategory( id, category)
 {
-    const res = await fetch(`https://localhost:5156/api/category/${id}`,
+    const res = await fetch(`http://localhost:5156/api/category/${id}`,
         {
             method: "PUT",
             headers: { "Content-Type" : "application/json", },
@@ -33,7 +33,7 @@ export async function updateCategory( id, category)
 
 export async function deleteCategory(id)
 {
-    const res = await fetch(`https://localhost:5156/api/category/${id}`,
+    const res = await fetch(`http://localhost:5156/api/category/${id}`,
         {
         method: "DELETE",
         });
@@ -48,7 +48,7 @@ export async function fetchProducts()
 
 export async function createProduct (product)
 {
-    const res = await fetch(`https://localhost:5156/api/product`, 
+    const res = await fetch(`http://localhost:5156/api/product`, 
         {
             method: "POST",
             headers: { "Content-Type" : "application/json", },
@@ -61,7 +61,7 @@ export async function createProduct (product)
 
 export async function updateProduct( id, product)
 {
-    const res = await fetch(`https://localhost:5156/api/product/${id}`,
+    const res = await fetch(`http://localhost:5156/api/product/${id}`,
         {
             method: "PUT",
             headers: { "Content-Type" : "application/json", },
@@ -73,7 +73,7 @@ export async function updateProduct( id, product)
 
 export async function deleteProduct(id)
 {
-    const res = await fetch(`https://localhost:5156/api/product/${id}`,
+    const res = await fetch(`http://localhost:5156/api/product/${id}`,
         {
         method: "DELETE",
         });
