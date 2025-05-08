@@ -154,3 +154,6 @@ C:\Users\My\Documents\GitHub\BasicShop\Backend\obj\Debug\net9.0\refint\Backend.d
 C:\Users\My\Documents\GitHub\BasicShop\Backend\obj\Debug\net9.0\Backend.pdb
 C:\Users\My\Documents\GitHub\BasicShop\Backend\obj\Debug\net9.0\Backend.genruntimeconfig.cache
 C:\Users\My\Documents\GitHub\BasicShop\Backend\obj\Debug\net9.0\ref\Backend.dll
+C:\Users\My\Documents\GitHub\BasicShop\backend\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\My\Documents\GitHub\BasicShop\backend\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\My\Documents\GitHub\BasicShop\backend\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
