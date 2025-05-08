@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchCategories, updateCategory, deleteCategory } from "../Services/api";
 
-function CategoryList()
+function AdminCategoryList()
 {
     const [categories, setCategories] = useState([]);
     const [edetingId, setEditingId] = useState(null);
@@ -101,4 +101,4 @@ function CategoryList()
       );
 }
 
-export default CategoryList;
+export default AdminCategoryList;

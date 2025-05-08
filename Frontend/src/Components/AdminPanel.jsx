@@ -1,7 +1,7 @@
 import ProductForm from "./ProductForm";
-import ProductList from "./ProductList";
+import ProductList from "./AdminProductList";
 import CategoryForm from "./CategoryForm";
-import CategoryList from "./CategoryList";
+import CategoryList from "./AdminCategoryList";
 
 function AdminPanel() {
   return (

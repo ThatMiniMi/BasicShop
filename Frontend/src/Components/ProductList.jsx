@@ -1,130 +1,62 @@
 import { useEffect, useState } from "react";
-import { fetchProducts, updateProduct, deleteProduct } from "../Services/api";
+import { fetchProducts } from "../Services/api";
 
-function ProductList() {
-  const [products, setProducts] = useState([]);
-  const [editingId, setEditingId] = useState(null);
-  const [editedProduct, setEditedProduct] = useState({});
+function ProductList()
+{
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadProducts();
+    useEffect(() =>
+    {
+        const loadProducts = async() =>
+        {
+            try
+            {
+                const data = await fetchProducts();
+                setProducts(data);
+            }
+            catch(err)
+            {
+                console.error("Failed to load products:", err);
+            }
+            finally
+            {
+                setLoading(false);
+            }
+        };
+
+        loadProducts();
   }, []);
 
-  const loadProducts = async () => {
-    try {
-      const data = await fetchProducts();
-      setProducts(data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const handleEdit = (product) => {
-    setEditingId(product.id);
-    setEditedProduct({ ...product });
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEditedProduct((prev) => ({
-      ...prev,
-      [name]: name === "price" || name === "stock" ? Number(value) : value,
-    }));
-  };
-
-  const handleUpdate = async () => {
-    try {
-      await updateProduct(editingId, editedProduct);
-      setEditingId(null);
-      loadProducts();
-    } catch (err) {
-      alert("Failed to update product");
-    }
-  };
-
-  const handleDelete = async (id) => {
-    if (!confirm("Are you sure you want to delete this product?")) return;
-    try {
-      await deleteProduct(id);
-      loadProducts();
-    } catch (err) {
-      alert("Failed to delete product");
-    }
-  };
+  if (loading) return <p className="text-center">Loading products...</p>;
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
-      <h2 className="text-xl font-bold mb-4">Product List</h2>
-      <ul className="space-y-4">
+    <div className="p-4">
+      <h2 className="text-2xl font-bold mb-4">Shop - Available Products</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {products.map((product) => (
-          <li
-            key={product.id}
-            className="border p-4 rounded shadow flex flex-col gap-2"
-          >
-            {editingId === product.id ? (
-              <>
-                <input
-                  type="text"
-                  name="name"
-                  value={editedProduct.name}
-                  onChange={handleChange}
-                  className="border px-2 py-1"
-                />
-                <input
-                  type="number"
-                  name="price"
-                  value={editedProduct.price}
-                  onChange={handleChange}
-                  className="border px-2 py-1"
-                />
-                <input
-                  type="number"
-                  name="stock"
-                  value={editedProduct.stock}
-                  onChange={handleChange}
-                  className="border px-2 py-1"
-                />
-                <input
-                  type="number"
-                  name="categoryId"
-                  value={editedProduct.categoryId}
-                  onChange={handleChange}
-                  className="border px-2 py-1"
-                />
-                <button
-                  onClick={handleUpdate}
-                  className="bg-green-600 text-white px-3 py-1 rounded"
-                >
-                  Save
-                </button>
-              </>
-            ) : (
-              <>
-                <div>
-                  <strong>{product.name}</strong> — ${product.price} — Stock:{" "}
-                  {product.stock}
-                </div>
-                <div className="space-x-2">
-                  <button
-                    onClick={() => handleEdit(product)}
-                    className="text-blue-600"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(product.id)}
-                    className="text-red-600"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </>
-            )}
-          </li>
+          <div key={product.id} className="border rounded p-4 shadow-md">
+            <img 
+              src={product.imageUrl} 
+              alt={product.name} 
+              className="w-full h-40 object-cover rounded mb-2"
+            />
+            <h3 className="text-lg font-semibold">{product.name}</h3>
+            <p className="text-gray-700">${product.price.toFixed(2)}</p>
+            <p className={`text-sm ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}`}>
+              {product.stock > 0 ? `In Stock: ${product.stock}` : 'Out of Stock'}
+            </p>
+            <button
+              className="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              onClick={() => alert(`View details of ${product.name}`)}
+            >
+              View Details
+            </button>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
-  );
+    );
 }
 
 export default ProductList;
