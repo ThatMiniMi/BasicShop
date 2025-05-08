@@ -4,7 +4,9 @@ using Backend.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddOpenApi();
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 builder.Services.AddCors(Options =>
 {
     Options.AddPolicy("AllowAll", policy =>
@@ -14,11 +16,20 @@ builder.Services.AddCors(Options =>
         .AllowAnyMethod();
     });
 });
+
 builder.Services.AddDbContext<AppDbContext>
 (Options =>Options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
 app.UseCors("AllowAll");
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.MapControllers();
 
 app.Run();
