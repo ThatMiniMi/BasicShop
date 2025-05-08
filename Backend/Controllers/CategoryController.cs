@@ -29,7 +29,7 @@ public class CategoryController : ControllerBase
             return CreatedAtAction(nameof(GetCategories), new { id = category.Id}, category);
     }
     
-    [HttpGet("{id}")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> UpdateCategory(int id, Category category)
     {
         if (id != category.Id)
