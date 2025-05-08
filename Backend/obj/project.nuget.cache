@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PwziXRTLLI0=",
+  "dgSpecHash": "X0Zb7a2Mn/g=",
   "success": true,
-  "projectFilePath": "C:\\Users\\My\\Documents\\GitHub\\BasicShop\\Backend\\Backend.csproj",
+  "projectFilePath": "C:\\Users\\My\\Documents\\GitHub\\BasicShop\\backend\\Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\My\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\My\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
