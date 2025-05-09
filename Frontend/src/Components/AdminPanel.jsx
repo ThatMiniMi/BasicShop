@@ -2,6 +2,7 @@ import ProductForm from "./ProductForm";
 import ProductList from "./AdminProductList";
 import CategoryForm from "./CategoryForm";
 import CategoryList from "./AdminCategoryList";
+import AdminCategoryList from "./AdminCategoryList";
 
 function AdminPanel() {
   return (
@@ -12,13 +13,13 @@ function AdminPanel() {
         {/* Categories */}
         <div className="space-y-4">
           <CategoryForm />
-          <CategoryList />
+          <AdminCategoryList />
         </div>
 
         {/* Products */}
         <div className="space-y-4">
           <ProductForm />
-          <ProductList />
+          <AdminCategoryList />
         </div>
       </div>
     </div>
