@@ -27,7 +27,7 @@ function AdminCategoryList()
     const handleEdit = (category) =>
     {
         setEditingId(category.id);
-        setEditName(category.name);
+        setEditedName(category.name);
     };
 
     const handleUpdate = async (id) =>
