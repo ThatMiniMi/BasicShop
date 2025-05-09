@@ -4,8 +4,8 @@ import { fetchCategories, updateCategory, deleteCategory } from "../Services/api
 function AdminCategoryList()
 {
     const [categories, setCategories] = useState([]);
-    const [edetingId, setEditingId] = useState(null);
-    const [editedName, setEditName] = useState("");
+    const [editingId, setEditingId] = useState(null);
+    const [editedName, setEditedName] = useState("");
 
     useEffect(() =>
     {
@@ -20,7 +20,7 @@ function AdminCategoryList()
         }
         catch (err)
         {
-            console.error(err);
+            console.error("Failed to load categories:", err);
         }
     };
 
@@ -30,7 +30,7 @@ function AdminCategoryList()
         setEditName(category.name);
     };
 
-    const handleUpdate = async (category) =>
+    const handleUpdate = async (id) =>
     {
         try
         {
@@ -40,6 +40,7 @@ function AdminCategoryList()
         }
         catch (err)
         {
+          console.error("Failed to update category:", err);
             alert("Failed to update category");
         }
     };
@@ -50,7 +51,9 @@ function AdminCategoryList()
         try {
           await deleteCategory(id);
           loadCategories();
-        } catch (err) {
+        } catch (err)
+        {
+          console.error("Failed to delete category:", err);
           alert("Failed to delete category");
         }
     };

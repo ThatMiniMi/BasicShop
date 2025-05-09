@@ -18,7 +18,12 @@ public class ProductController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Product>>> GetAllProducts(int id)
     {
-        return await _context.Products.Include(p => p.Category).ToListAsync();
+        var products = await _context.Products.Include(p => p.Category).ToListAsync();
+        if (products.Count == 0)
+        {
+            return NoContent();
+        }
+        return products;
     }
 
     [HttpGet("{id}")]
@@ -27,24 +32,31 @@ public class ProductController : ControllerBase
         var product = await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
 
         if (product == null)
+        {
             return NotFound();
-            return product;
+        }
+        return product;
     }
 
     [HttpPost]
     public async Task<ActionResult<Product>> CreateProduct(Product product)
     {
+        if (product == null || string.IsNullOrEmpty(product.Name))
+        {
+            return BadRequest("Product is null or invalid.");
+        }
         _context.Products.Add(product);
-
         await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
+        return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateProduct(int id, Product product)
     {
-        if (id != product.Id)
-            return BadRequest();
+        if (product == null || id != product.Id)
+        {
+            return BadRequest("invalid product daa or mismatched ID.");
+        }
 
         _context.Entry(product).State = EntityState.Modified;
 
@@ -69,11 +81,12 @@ public class ProductController : ControllerBase
         var product = await _context.Products.FindAsync(id);
 
         if (product == null)
+        {
             return NotFound();
+        }
 
         _context.Products.Remove(product);
-        
         await _context.SaveChangesAsync();
-            return NoContent();
+        return NoContent();
     }
 }

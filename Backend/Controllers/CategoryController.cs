@@ -18,23 +18,35 @@ public class CategoryController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
     {
-        return await _context.Categories.ToListAsync();
+        var categories = await _context.Categories.Include(c => c.Products).ToListAsync();
+        if (categories == null)
+        {
+            return NoContent();
+        }
+        return categories;
     }
 
     [HttpPost]
     public async Task<ActionResult<Category>> CreateCategory(Category category)
     {
+        if (category == null || string.IsNullOrEmpty(category.Name))
+        {
+            return BadRequest("Category is null or invalid.");
+        }
+
         _context.Categories.Add(category);
         await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetCategories), new { id = category.Id}, category);
+        return CreatedAtAction(nameof(GetCategories), new { id = category.Id}, category);
     }
     
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateCategory(int id, Category category)
     {
-        if (id != category.Id)
-            return BadRequest();
-
+        if (category == null || id != category.Id)
+        {
+            return BadRequest("Invalid category data or mismatched ID.");
+        }
+            
         _context.Entry(category).State = EntityState.Modified;
 
         try
@@ -57,8 +69,13 @@ public class CategoryController : ControllerBase
         if (category == null)
             return NotFound();
 
-        _context.Categories.Remove(category);
+        var hasRelatedProducts = await _context.Products.AnyAsync(p => p.CategoryID == id);
+        if (hasRelatedProducts)
+        {
+            return BadRequest("Cannot delete category with related products.");
+        }
 
+        _context.Categories.Remove(category);
         await _context.SaveChangesAsync();
 
         return NoContent();
