@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models;
 public class Product
@@ -10,6 +11,8 @@ public class Product
     public int Stock { get; set; }
     public string ImageUrl { get; set; } = string.Empty;
     public int CategoryID { get; set; }
+
+    [JsonIgnore]
     public Category? Category { get; set; }
 
 }

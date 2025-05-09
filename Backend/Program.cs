@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Backend.Data;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,12 @@ builder.Services.AddCors(Options =>
         .AllowAnyMethod();
     });
 });
+builder.Services.AddMvc()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+    });
 
 builder.Services.AddDbContext<AppDbContext>
 (Options =>Options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
