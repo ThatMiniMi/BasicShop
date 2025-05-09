@@ -64,7 +64,7 @@ function AdminCategoryList()
           <h2 className="text-xl font-bold mb-2">Manage Categories</h2>
           <ul className="space-y-2">
             {categories.map((cat) => (
-              <li key={cat.id} className="flex justify-between items-center border p-2 rounded">
+              <li key={cat.Id} className="flex justify-between items-center border p-2 rounded">
                 {editingId === cat.id ? (
                   <>
                     <input
