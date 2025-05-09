@@ -1,7 +1,6 @@
 import ProductForm from "./ProductForm";
-import ProductList from "./AdminProductList";
+import AdminProductList from "./AdminProductList";
 import CategoryForm from "./CategoryForm";
-import CategoryList from "./AdminCategoryList";
 import AdminCategoryList from "./AdminCategoryList";
 
 function AdminPanel() {
@@ -19,7 +18,7 @@ function AdminPanel() {
         {/* Products */}
         <div className="space-y-4">
           <ProductForm />
-          <AdminCategoryList />
+          <AdminProductList />
         </div>
       </div>
     </div>
