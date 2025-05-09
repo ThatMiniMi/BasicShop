@@ -16,6 +16,7 @@ function AdminCategoryList()
         try
         {
             const data = await fetchCategories();
+            console.log("Categories Loaded:", data);
             setCategories(data);
         }
         catch (err)
