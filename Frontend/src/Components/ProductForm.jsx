@@ -25,7 +25,7 @@ function ProductForm() {
         description: form.description,
         price: parseFloat(form.price),
         stock: parseInt(form.stock),
-        CategoryID: parseInt(form.CategoryI),
+        CategoryID: parseInt(form.categoryId),
         imageUrl: form.imageUrl,
       };
 
