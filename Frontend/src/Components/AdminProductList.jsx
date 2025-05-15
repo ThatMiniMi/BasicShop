@@ -8,85 +8,80 @@ function AdminProductList()
   const [editedProduct, setEditedProduct] = useState({});
 
   useEffect(() =>
-{
+    {
     loadProducts();
-  }, []);
+    }, []);
 
   const loadProducts = async () =>
-  {
-    try
     {
+      try
+      {
       const data = await fetchProducts();
       const normalized = data.map((p) => (
-      {
-        id: p.id,
-        name: p.name,
-        price: p.price,
-        stock: p.stock,
-        categoryId: p.categoryId,
-      }));
+        {
+          id: p.Id,
+          name: p.Name,
+          price: p.Price,
+          stock: p.Stock,
+          categoryId: p.CategoryID,
+        }));
       setProducts(normalized);
-    }
-    catch (err)
-    {
+      }
+      catch (err) 
+      {
       console.error("Error loading products:", err);
       alert("Failed to load products. Please try again.");
-    }
-  };
+      }
+    };
 
   const handleEdit = (product) =>
-  {
+    {
     setEditingId(product.id);
     setEditedProduct(
-    {
-      name: product.name || "",
-      price: product.price || 0,
-      stock: product.stock || 0,
-      categoryId: product.categoryId || 0,
-    });
-  };
+      {
+        name: product.name || "",
+        price: product.price || 0,
+        stock: product.stock || 0,
+        categoryId: product.categoryId || 0,
+      });
+    };
 
   const handleChange = (e) =>
-  {
+    {
     const { name, value } = e.target;
     setEditedProduct((prev) => (
-    {
-      ...prev,
-      [name]: name === "price" || name === "stock" || name === "categoryId" ? Number(value) : value,
-    }));
-  };
+      {
+        ...prev,
+        [name]: name === "price" || name === "stock" || name === "categoryId" ? Number(value) : value,
+      }));
+    };
 
   const handleUpdate = async () =>
-  {
-    try
     {
-      const updatedProduct = await updateProduct(editingId, editedProduct);
-      setProducts((prev) =>
-        prev.map((product) => (product.id === editingId ? updatedProduct : product))
-      );
-      setEditingId(null);
-    }
-    catch (err)
-    {
-      console.error("Error updating product:", err);
-      alert("Failed to update product. Please try again.");
-    }
-  };
+      try
+      {
+        const updatedProduct = await updateProduct(editingId, editedProduct);
+        setProducts((prev) =>
+          prev.map((product) => (product.id === editingId ? updatedProduct : product))
+        );
+        setEditingId(null);
+      } catch (err) {
+        console.error("Error updating product:", err);
+        alert("Failed to update product. Please try again.");
+      }
+    };
 
   const handleDelete = async (id) =>
-  {
-    if (!confirm("Are you sure you want to delete this product?")) return;
-    try
     {
-      await deleteProduct(id);
-      setProducts((prev) => prev.filter((product) => product.id !== id));
-    }
-    catch (err)
-    {
-      console.error("Error deleting product:", err);
-      alert("Failed to delete product. Please try again.");
-    }
-  };
+      if (!confirm("Are you sure you want to delete this product?")) return;
+      try {
+        await deleteProduct(id);
+        setProducts((prev) => prev.filter((product) => product.id !== id));
+      } catch (err) {
+        console.error("Error deleting product:", err);
+        alert("Failed to delete product. Please try again.");
+      }
+    };
 
   return (
     <div className="max-w-3xl mx-auto p-4">
@@ -140,8 +135,7 @@ function AdminProductList()
               ) : (
                 <>
                   <div>
-                    <strong>{product.name}</strong> — ${product.price} — Stock:{" "}
-                    {product.stock}
+                    <strong>{product.name}</strong> — ${product.price} — Stock: {product.stock}
                   </div>
                   <div className="space-x-2">
                     <button
