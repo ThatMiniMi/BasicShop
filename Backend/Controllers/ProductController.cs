@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Backend.Data;
 using Backend.Models;
+using Backend.DTOs;
 
 namespace Backend.Controllers;
 
@@ -39,12 +40,27 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Product>> CreateProduct(Product product)
+    public async Task<ActionResult<Product>> CreateProduct(ProductDto dto)
     {
-        if (product == null || string.IsNullOrEmpty(product.Name))
+        if (dto == null || string.IsNullOrWhiteSpace(dto.Name))
         {
-            return BadRequest("Product is null or invalid.");
+            return BadRequest("Product data is missing or invalid.");
         }
+        var category = await _context.Categories.FindAsync(dto.CategoryID);
+    if (category == null)
+    {
+        return BadRequest("Category does not exist.");
+    }
+    var product = new Product
+    {
+        Name = dto.Name,
+        Description = dto.Description,
+        Price = dto.Price,
+        Stock = dto.Stock,
+        ImageUrl = dto.ImageUrl,
+        CategoryID = dto.CategoryID
+    };
+
         _context.Products.Add(product);
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
