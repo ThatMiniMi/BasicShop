@@ -1,30 +1,32 @@
 import { useEffect, useState } from "react";
 import { fetchProducts, updateProduct, deleteProduct } from "../Services/api";
 
-function AdminProductList() {
+function AdminProductList()
+{
   const [products, setProducts] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [editedProduct, setEditedProduct] = useState({});
 
   useEffect(() =>
-    {
+{
     loadProducts();
-    }, []);
+  }, []);
 
   const loadProducts = async () =>
-{
+  {
     try
     {
       const data = await fetchProducts();
-      const normalized = data.map((p) => ({
-        id: p.Id,
-        name: p.Name,
-        price: p.Price,
-        stock: p.Stock,
-        categoryId: p.CategoryID,
-    }));
+      const normalized = data.map((p) => (
+      {
+        id: p.id,
+        name: p.name,
+        price: p.price,
+        stock: p.stock,
+        categoryId: p.categoryId,
+      }));
       setProducts(normalized);
-    } 
+    }
     catch (err)
     {
       console.error("Error loading products:", err);
@@ -33,7 +35,7 @@ function AdminProductList() {
   };
 
   const handleEdit = (product) =>
-{
+  {
     setEditingId(product.id);
     setEditedProduct(
     {
@@ -45,38 +47,34 @@ function AdminProductList() {
   };
 
   const handleChange = (e) =>
-    {
+  {
     const { name, value } = e.target;
     setEditedProduct((prev) => (
-        {
+    {
       ...prev,
-      [name]: ["price", "stock", "categoryId"].includes(name)
-        ? Number(value)
-        : value,
-        }));
-    };
+      [name]: name === "price" || name === "stock" || name === "categoryId" ? Number(value) : value,
+    }));
+  };
 
   const handleUpdate = async () =>
-    {
-    try 
+  {
+    try
     {
       const updatedProduct = await updateProduct(editingId, editedProduct);
       setProducts((prev) =>
-        prev.map((product) =>
-          product.id === editingId ? { ...product, ...updatedProduct } : product
-        )
+        prev.map((product) => (product.id === editingId ? updatedProduct : product))
       );
       setEditingId(null);
-    } 
+    }
     catch (err)
     {
       console.error("Error updating product:", err);
       alert("Failed to update product. Please try again.");
     }
-    };
+  };
 
   const handleDelete = async (id) =>
-    {
+  {
     if (!confirm("Are you sure you want to delete this product?")) return;
     try
     {
@@ -84,7 +82,7 @@ function AdminProductList() {
       setProducts((prev) => prev.filter((product) => product.id !== id));
     }
     catch (err)
-{
+    {
       console.error("Error deleting product:", err);
       alert("Failed to delete product. Please try again.");
     }
