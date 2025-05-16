@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { fetchProducts } from "../Services/api";
+import { CartContext } from "./CartContext";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const loadProducts = async () =>
@@ -63,6 +65,15 @@ function ProductList() {
             >
               View Details
             </button>
+            <button
+                disabled={product.stock === 0}
+                className={`px-4 py-2 rounded text-white ${
+                  product.stock > 0 ? "bg-green-600 hover:bg-green-700" : "bg-gray-400 cursor-not-allowed"
+                }`}
+                onClick={() => addToCart(product)}
+              >
+                Add to Cart
+              </button>
           </div>
         ))}
       </div>
