@@ -6,11 +6,24 @@ function ProductList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadProducts = async () => {
-      try {
+    const loadProducts = async () =>
+      {
+      try
+      {
         const data = await fetchProducts();
-        setProducts(data);
-      } catch (err) {
+        const normalized = data.map((p) => (
+        {
+        id: p.Id,
+        name: p.Name,
+        price: p.Price,
+        stock: p.Stock,
+        imageUrl: p.ImageUrl,
+        }));
+
+      setProducts(normalized);
+      }
+      catch (err)
+      {
         console.error("Failed to load products:", err);
       } finally {
         setLoading(false);
