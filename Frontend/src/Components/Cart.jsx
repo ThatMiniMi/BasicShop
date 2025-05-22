@@ -14,7 +14,7 @@ function Cart()
     {
       const allProducts = await fetchProducts();
 
-      for (const item of cart)
+      for (const product of cart)
       {
         const current = allProducts.find(
           (p) => p.Id === product.id || p.id === product.id
@@ -66,13 +66,13 @@ function Cart()
       ) : (
         <>
           <ul className="space-y-2">
-            {cart.map((item, index) => (
+            {cart.map((product, index) => (
               <li
                 key={index}
                 className="border p-2 rounded flex justify-between"
               >
                 <span>
-                  {item.name} - ${item.price.toFixed(2)}
+                  {product.name} - ${product.price.toFixed(2)}
                 </span>
                 <button
                   onClick={() => removeFromCart(index)}
