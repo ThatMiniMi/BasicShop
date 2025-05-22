@@ -17,12 +17,12 @@ function Cart()
       for (const item of cart)
       {
         const current = allProducts.find(
-          (p) => p.Id === item.id || p.id === item.id
+          (p) => p.Id === product.id || p.id === product.id
         );
 
         if (!current)
         {
-          throw new Error(`Product ${item.name} not found`);
+          throw new Error(`Product ${product.name} not found`);
         }
 
         const currentStock = current.Stock ?? current.stock ?? 0;
@@ -30,7 +30,7 @@ function Cart()
 
         if (updatedStock < 0)
         {
-          throw new Error(`Not enough stock for ${item.name}`);
+          throw new Error(`Not enough stock for ${product.name}`);
         }
 
         await updateProduct(current.Id || current.id,
