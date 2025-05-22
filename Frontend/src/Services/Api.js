@@ -68,7 +68,7 @@ export async function updateProduct( id, product)
             body: JSON.stringify(product)
         });
     if(!res.ok) throw new Error("Failed to update product");
-    if(!res.status === 204) return null;;
+    if(!res.status === 204) return null;
     
     const contentType = res.headers.get("Content-Type");
     if (contentType && contentType.includes("application/json"))
