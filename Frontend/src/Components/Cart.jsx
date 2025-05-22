@@ -2,7 +2,8 @@ import { useCart } from "./CartContext";
 import { useState } from "react";
 import { updateProduct, fetchProducts } from "../Services/api";
 
-function Cart() {
+function Cart()
+{
   const { cart, removeFromCart, clearCart } = useCart();
   const [checkedOut, setCheckedOut] = useState(false);
   const [error, setError] = useState("");
@@ -15,26 +16,33 @@ function Cart() {
 
       for (const item of cart)
       {
-        const current = allProducts.find((p) => p.Id === item.id || p.id === item.id);
+        const current = allProducts.find(
+          (p) => p.Id === item.id || p.id === item.id
+        );
 
-        if (!current) continue;
+        if (!current)
+        {
+          throw new Error(`Product ${item.name} not found`);
+        }
 
-        const newStock = (current.Stock ?? current.stock ?? 0) - 1;
-        if (newStock < 0)
-          {
+        const currentStock = current.Stock ?? current.stock ?? 0;
+        const updatedStock = currentStock - 1;
+
+        if (updatedStock < 0)
+        {
           throw new Error(`Not enough stock for ${item.name}`);
-          }
+        }
 
         await updateProduct(current.Id || current.id,
-          {
+        {
           ...current,
-          stock: newStock,
-          });
+          stock: updatedStock,
+        });
       }
 
       clearCart();
       setCheckedOut(true);
-    }
+    } 
     catch (err)
     {
       console.error("Checkout error:", err);
