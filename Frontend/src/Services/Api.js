@@ -69,6 +69,8 @@ export async function updateProduct( id, product)
         });
     if(!res.ok) throw new Error("Failed to update product");
         return res.json();
+    if(!res.status === 204) return;
+        return res.json();
 }
 
 export async function deleteProduct(id)
