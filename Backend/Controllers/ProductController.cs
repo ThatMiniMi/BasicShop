@@ -11,9 +11,11 @@ namespace Backend.Controllers;
 public class ProductController : ControllerBase
 {
     private readonly AppDbContext _context;
-    public ProductController (AppDbContext context)
+    private readonly IWebHostEnvironment _env;
+    public ProductController(AppDbContext context, IWebHostEnvironment env)
     {
         _context = context;
+        _env = env;
     }
 
     [HttpGet]
@@ -47,19 +49,19 @@ public class ProductController : ControllerBase
             return BadRequest("Product data is missing or invalid.");
         }
         var category = await _context.Categories.FindAsync(dto.CategoryID);
-    if (category == null)
-    {
-        return BadRequest("Category does not exist.");
-    }
-    var product = new Product
-    {
-        Name = dto.Name,
-        Description = dto.Description,
-        Price = dto.Price,
-        Stock = dto.Stock,
-        ImageUrl = dto.ImageUrl,
-        CategoryID = dto.CategoryID
-    };
+        if (category == null)
+        {
+            return BadRequest("Category does not exist.");
+        }
+        var product = new Product
+        {
+            Name = dto.Name,
+            Description = dto.Description,
+            Price = dto.Price,
+            Stock = dto.Stock,
+            ImageUrl = dto.ImageUrl,
+            CategoryID = dto.CategoryID
+        };
 
         _context.Products.Add(product);
         await _context.SaveChangesAsync();
@@ -104,5 +106,28 @@ public class ProductController : ControllerBase
         _context.Products.Remove(product);
         await _context.SaveChangesAsync();
         return NoContent();
+    }
+    [HttpPost("upload-image")]
+    public async Task<IActionResult> UploadImage([FromForm] IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+            return BadRequest("No file uploaded.");
+
+        var uploadsFolder = Path.Combine(_env.WebRootPath, "images");
+        if (!Directory.Exists(uploadsFolder))
+        {
+            Directory.CreateDirectory(uploadsFolder);
+        }
+
+        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+        var filePath = Path.Combine(uploadsFolder, fileName);
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+
+        var imageUrl = $"/images/{fileName}";
+        return Ok(new { imageUrl });
     }
 }
