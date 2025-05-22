@@ -65,7 +65,7 @@ function AdminProductList()
           ...editedProduct,
           id: editingId,
         }
-        await updateProduct(editingId, editedProduct );
+        await updateProduct(editingId, updateData);
         setProducts((prev) =>
           prev.map((product) => (product.id === editingId ? updateData : product))
         );
