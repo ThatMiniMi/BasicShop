@@ -60,14 +60,14 @@ function AdminProductList()
     {
       try
       {
-        const updateData =
+        const updatedData =
         {
           ...editedProduct,
           id: editingId,
         }
         await updatedProduct(editingId, editedProduct );
         setProducts((prev) =>
-          prev.map((product) => (product.id === editingId ? updatedProduct : product))
+          prev.map((product) => (product.id === editingId ? updatedData : product))
         );
         setEditingId(null);
       } catch (err) {
