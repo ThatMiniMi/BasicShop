@@ -108,9 +108,9 @@ public class ProductController : ControllerBase
         return NoContent();
     }
     [HttpPost("upload-image")]
-    public async Task<IActionResult> UploadImage([FromForm] IFormFile file)
+    public async Task<IActionResult> UploadImage([FromForm] ImageDto model)
     {
-        if (file == null || file.Length == 0)
+        if (model.File == null || model.File.Length == 0)
             return BadRequest("No file uploaded.");
 
         var uploadsFolder = Path.Combine(_env.WebRootPath, "images");
@@ -119,12 +119,12 @@ public class ProductController : ControllerBase
             Directory.CreateDirectory(uploadsFolder);
         }
 
-        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+        var fileName = Guid.NewGuid() + Path.GetExtension(model.File.FileName);
         var filePath = Path.Combine(uploadsFolder, fileName);
 
         using (var stream = new FileStream(filePath, FileMode.Create))
         {
-            await file.CopyToAsync(stream);
+            await model.File.CopyToAsync(stream);
         }
 
         var imageUrl = $"/images/{fileName}";
