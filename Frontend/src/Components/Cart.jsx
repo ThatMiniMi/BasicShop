@@ -1,6 +1,7 @@
 import { useCart } from "./CartContext";
 import { useState } from "react";
-import { updateProduct, fetchProducts } from "../Services/api";
+import { fetchProducts } from "../Services/api";
+import { updateProductStock } from "../Services/api";
 
 function Cart()
 {
@@ -17,7 +18,7 @@ function Cart()
       for (const product of cart)
       {
         const current = allProducts.find(
-          (p) => p.Id === product.id || p.id === product.id
+          (p) => p.id === product.id || p.id === product.id
         );
 
         if (!current)
@@ -33,11 +34,7 @@ function Cart()
           throw new Error(`Not enough stock for ${product.name}`);
         }
 
-        await updateProduct(current.Id || current.id,
-        {
-          ...current,
-          stock: updatedStock,
-        });
+        await updateProductStock(current.Id || current.id, updatedStock);
       }
 
       clearCart();

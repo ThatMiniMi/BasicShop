@@ -102,7 +102,7 @@ public class ProductController : ControllerBase
 
         await _context.SaveChangesAsync();
         return Ok(product);
-    
+
     }
 
     [HttpDelete("{id}")]
@@ -142,4 +142,15 @@ public class ProductController : ControllerBase
         var imageUrl = $"/images/{fileName}";
         return Ok(new { imageUrl });
     }
-}
+    [HttpPatch("{id}/stock")]
+    public async Task<IActionResult> UpdateStock(int id, [FromBody] int newStock)
+    {
+        var product = await _context.Products.FindAsync(id);
+        if (product == null) return NotFound();
+
+        product.Stock = newStock;
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+    }

@@ -78,6 +78,16 @@ export async function updateProduct( id, product)
     return null;
         
 }
+export async function updateProductStock(id, newStock)
+{
+  const res = await fetch(`http://localhost:5156/api/product/${id}/stock`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newStock),
+  });
+
+  if (!res.ok) throw new Error("Failed to update product stock");
+}
 
 export async function deleteProduct(id)
 {
