@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BdKAzDskULRNsYPGRRMoB6Js50LnSPOicOGUm0bO1tk=",
+  "Hash": "PrG8agorgLgnWJKEh+cdMsY5ymLE01SkNiLBHya7TIQ=",
   "Source": "Backend",
   "BasePath": "_content/Backend",
   "Mode": "Default",
@@ -15,6 +15,214 @@
       "Pattern": "**"
     }
   ],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\My\\Documents\\GitHub\\BasicShop\\Backend\\wwwroot\\images\\d9a3ff8e-6926-4dd9-9e29-bf41871010d5.jpg",
+      "SourceId": "Backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\My\\Documents\\GitHub\\BasicShop\\Backend\\wwwroot\\",
+      "BasePath": "_content/Backend",
+      "RelativePath": "images/d9a3ff8e-6926-4dd9-9e29-bf41871010d5#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "oqgw2ufx76",
+      "Integrity": "QDlffyEPp7OSAzUgVcZdtntCunT+6zticxs8uCTzkjQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\d9a3ff8e-6926-4dd9-9e29-bf41871010d5.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\My\\Documents\\GitHub\\BasicShop\\Backend\\wwwroot\\images\\ff48bf80-4c56-4589-9244-68e4b9dac482.jpg",
+      "SourceId": "Backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\My\\Documents\\GitHub\\BasicShop\\Backend\\wwwroot\\",
+      "BasePath": "_content/Backend",
+      "RelativePath": "images/ff48bf80-4c56-4589-9244-68e4b9dac482#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1i9r0emprm",
+      "Integrity": "2QC7PwQ5+yYq84+FkXaDqBbYwjZhBrxdmqGCcN+P048=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\ff48bf80-4c56-4589-9244-68e4b9dac482.jpg"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "images/d9a3ff8e-6926-4dd9-9e29-bf41871010d5.jpg",
+      "AssetFile": "C:\\Users\\My\\Documents\\GitHub\\BasicShop\\Backend\\wwwroot\\images\\d9a3ff8e-6926-4dd9-9e29-bf41871010d5.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "45388"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QDlffyEPp7OSAzUgVcZdtntCunT+6zticxs8uCTzkjQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 07:59:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-QDlffyEPp7OSAzUgVcZdtntCunT+6zticxs8uCTzkjQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/d9a3ff8e-6926-4dd9-9e29-bf41871010d5.oqgw2ufx76.jpg",
+      "AssetFile": "C:\\Users\\My\\Documents\\GitHub\\BasicShop\\Backend\\wwwroot\\images\\d9a3ff8e-6926-4dd9-9e29-bf41871010d5.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "45388"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QDlffyEPp7OSAzUgVcZdtntCunT+6zticxs8uCTzkjQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 07:59:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "oqgw2ufx76"
+        },
+        {
+          "Name": "label",
+          "Value": "images/d9a3ff8e-6926-4dd9-9e29-bf41871010d5.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-QDlffyEPp7OSAzUgVcZdtntCunT+6zticxs8uCTzkjQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/ff48bf80-4c56-4589-9244-68e4b9dac482.1i9r0emprm.jpg",
+      "AssetFile": "C:\\Users\\My\\Documents\\GitHub\\BasicShop\\Backend\\wwwroot\\images\\ff48bf80-4c56-4589-9244-68e4b9dac482.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15249"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2QC7PwQ5+yYq84+FkXaDqBbYwjZhBrxdmqGCcN+P048=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 07:58:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1i9r0emprm"
+        },
+        {
+          "Name": "label",
+          "Value": "images/ff48bf80-4c56-4589-9244-68e4b9dac482.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-2QC7PwQ5+yYq84+FkXaDqBbYwjZhBrxdmqGCcN+P048="
+        }
+      ]
+    },
+    {
+      "Route": "images/ff48bf80-4c56-4589-9244-68e4b9dac482.jpg",
+      "AssetFile": "C:\\Users\\My\\Documents\\GitHub\\BasicShop\\Backend\\wwwroot\\images\\ff48bf80-4c56-4589-9244-68e4b9dac482.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15249"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2QC7PwQ5+yYq84+FkXaDqBbYwjZhBrxdmqGCcN+P048=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 07:58:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-2QC7PwQ5+yYq84+FkXaDqBbYwjZhBrxdmqGCcN+P048="
+        }
+      ]
+    }
+  ]
 }

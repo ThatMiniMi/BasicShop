@@ -18,7 +18,7 @@ function Cart()
       for (const product of cart)
       {
         const current = allProducts.find(
-          (p) => p.id === product.id || p.id === product.id
+          (p) => p.Id === product.id || p.id === product.id
         );
 
         if (!current)
