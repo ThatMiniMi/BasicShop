@@ -61,14 +61,14 @@ export async function createProduct (product)
 
 export async function updateProduct( id, product)
 {
+    const isFormData = product instanceof FormData;
     const res = await fetch(`http://localhost:5156/api/product/${id}`,
         {
             method: "PUT",
-            headers: { "Content-Type" : "application/json", },
-            body: JSON.stringify(product)
+            headers: isFormData ?  undefined : { "Content-Type" : "application/json", },
+            body: isFormData ? product : JSON.stringify(product)
         });
     if(!res.ok) throw new Error("Failed to update product");
-    if(!res.status === 204) return null;
     
     const contentType = res.headers.get("Content-Type");
     if (contentType && contentType.includes("application/json"))

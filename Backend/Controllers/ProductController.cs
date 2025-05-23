@@ -69,28 +69,40 @@ public class ProductController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateProduct(int id, Product product)
+    public async Task<IActionResult> UpdateProduct(int id, [FromForm] ProductDto dto, IFormFile? image)
     {
-        if (product == null || id != product.Id)
+        var product = await _context.Products.FindAsync(id);
+        if (product == null)
+            return NotFound();
+
+        product.Name = dto.Name;
+        product.Description = dto.Description;
+        product.Price = dto.Price;
+        product.Stock = dto.Stock;
+        product.CategoryID = dto.CategoryID;
+
+        if (image != null && image.Length > 0)
         {
-            return BadRequest("invalid product daa or mismatched ID.");
+            var uploadsFolder = Path.Combine(_env.WebRootPath, "images");
+            if (!Directory.Exists(uploadsFolder))
+            {
+                Directory.CreateDirectory(uploadsFolder);
+            }
+
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+            var filePath = Path.Combine(uploadsFolder, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await image.CopyToAsync(stream);
+            }
+
+            product.ImageUrl = $"/images/{fileName}";
         }
 
-        _context.Entry(product).State = EntityState.Modified;
-
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!_context.Products.Any(p => p.Id == id))
-                return NotFound();
-            throw;
-        }
-
-        return NoContent();
+        await _context.SaveChangesAsync();
+        return Ok(product);
+    
     }
 
     [HttpDelete("{id}")]
