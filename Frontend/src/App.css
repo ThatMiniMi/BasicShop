@@ -1,36 +1,33 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root
 {
-  --main-bg: #1e1b2e;
-  --accent: #eab308;
-  --muted: #9ca3af;
-  --highlight: #a855f7;
+  --highlight: theme(colors.purple.500);
+  --accent: theme(colors.amber.400);
+  --muted: theme(colors.gray.400);
 }
 
 body
 {
   @apply bg-gradient-to-br from-purple-900 via-purple-800 to-purple-950 text-white min-h-screen;
-  font-family: 'ui-sans-serif', 'system-ui', sans-serif;
+  font-family: theme(fontFamily.sans);
 }
 
 #root
 {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  @apply max-w-7xl mx-auto px-4 py-8;
 }
 
 .logo
 {
-  height: 6em;
-  padding: 1.5em;
-  transition: filter 300ms, transform 300ms;
-  will-change: filter, transform;
+  @apply h-24 p-6 transition-all duration-300 ease-in-out;
 }
+
 .logo:hover
 {
-  filter: drop-shadow(0 0 2em var(--highlight));
+  filter: drop-shadow(0 0 2em theme(colors.purple.500));
   transform: scale(1.05);
 }
 
@@ -47,30 +44,22 @@ body
 }
 @media (prefers-reduced-motion: no-preference)
 {
-  .logo.spin
-  {
+  .logo.spin {
     animation: logo-spin infinite 20s linear;
   }
 }
 
 .card
 {
-  @apply bg-purple-800 bg-opacity-50 backdrop-blur-md rounded-lg p-6 shadow-md transition hover:shadow-yellow-400;
-  border: 1px solid var(--accent);
-}
-
-.read-the-docs
-{
-  color: var(--muted);
-  font-size: 0.875rem;
+  @apply bg-purple-800/50 backdrop-blur-md rounded-xl p-6 border border-amber-400 shadow-lg;
 }
 
 .button-glow
 {
-  @apply bg-yellow-400 text-purple-900 font-semibold px-4 py-2 rounded shadow-md transition duration-300 hover:bg-yellow-300 hover:shadow-lg;
+  @apply bg-amber-400 text-purple-900 font-semibold px-4 py-2 rounded-lg shadow-md transition duration-300 hover:bg-amber-300 hover:shadow-yellow-200;
 }
 
 .shop-header
 {
-  @apply text-4xl font-bold tracking-wide text-yellow-300 mb-10 text-center drop-shadow-lg;
+  @apply text-4xl font-extrabold tracking-wide text-amber-300 drop-shadow-md mb-10;
 }
