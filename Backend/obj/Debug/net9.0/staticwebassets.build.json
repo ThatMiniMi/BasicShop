@@ -1,12 +1,20 @@
 {
   "Version": 1,
-  "Hash": "+8gz7rjoDcLSTM7Kwf5qkbapKXDd97xhyAb9pxhYrew=",
+  "Hash": "BdKAzDskULRNsYPGRRMoB6Js50LnSPOicOGUm0bO1tk=",
   "Source": "Backend",
   "BasePath": "_content/Backend",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Backend\\wwwroot",
+      "Source": "Backend",
+      "ContentRoot": "C:\\Users\\My\\Documents\\GitHub\\BasicShop\\Backend\\wwwroot\\",
+      "BasePath": "_content/Backend",
+      "Pattern": "**"
+    }
+  ],
   "Assets": [],
   "Endpoints": []
 }

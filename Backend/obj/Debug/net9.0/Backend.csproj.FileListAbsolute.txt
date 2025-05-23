@@ -157,3 +157,4 @@ C:\Users\My\Documents\GitHub\BasicShop\Backend\obj\Debug\net9.0\ref\Backend.dll
 C:\Users\My\Documents\GitHub\BasicShop\backend\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\My\Documents\GitHub\BasicShop\backend\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\My\Documents\GitHub\BasicShop\backend\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\My\Documents\GitHub\BasicShop\Backend\bin\Debug\net9.0\Backend.staticwebassets.runtime.json
